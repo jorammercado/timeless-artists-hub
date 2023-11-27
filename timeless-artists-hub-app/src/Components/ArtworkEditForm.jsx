@@ -37,11 +37,7 @@ export default function ArtworkEditForm() {
             },
         })
             .then((response) => {
-                if (response.ok) {
-                    navigate(`/artists/${artist_id}/artworks`)
-                } else {
-                    throw new Error("Network response was not ok.")
-                }
+                navigate(`/artists/${artist_id}/artworks`)
             })
             .catch((error) => {
                 console.error("Error:", error)

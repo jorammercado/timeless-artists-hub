@@ -40,11 +40,7 @@ export default function ArtistEditForm() {
             },
         })
             .then((response) => {
-                if (response.ok) {
                     navigate(`/artists/${id}`)
-                } else {
-                    throw new Error("Network response was not ok.")
-                }
             })
             .catch((error) => {
                 console.error("Error:", error)
