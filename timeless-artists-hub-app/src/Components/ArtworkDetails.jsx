@@ -60,9 +60,9 @@ function ArtworkDetails() {
                     <tr >
                         <th colSpan="4"> Genre: {artist.genre} </th>
                     </tr>
-                    
+
                 </tbody>
-                
+
             </table>
             <div className="show-navigation">
                 <Link to={`/artistes/${artist_id}/artworks`}>
