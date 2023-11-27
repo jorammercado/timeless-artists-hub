@@ -7,7 +7,7 @@ function Home() {
                 Timeless Artists Hub
             </div>
             <div className="sub-title">
-                Discover, Learn, and Appreciate Art Through the Ages and Journey through the Epochs of Artistry. 
+                Discover learn and appreciate art through the ages and journey through the epochs of artistry. 
             </div>
         </div>
     )

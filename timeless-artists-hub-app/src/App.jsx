@@ -34,7 +34,7 @@ function App() {
           <Route path="/artworks/:id" element={<ShowArtworkDirect />} />
           <Route path="/artworks/:id/edit" element={<EditArtworkDirect />} />
           <Route path="/artists/new" element={<New />} />
-          <Route path="/artists/:id" element={<Show />} />
+          <Route path="/artists/:artist_id" element={<Show />} />
           <Route path="/artists/:artist_id/artworks" element={<IndexArtwork />} />
           <Route path="/artists/:artist_id/artworks/new" element={<NewArtwork />} />
           <Route path="/artists/:artist_id/artworks/:id" element={<ShowArtwork />} />
