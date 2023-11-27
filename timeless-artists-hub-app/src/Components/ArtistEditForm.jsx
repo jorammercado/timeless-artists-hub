@@ -76,6 +76,7 @@ export default function ArtistEditForm() {
                     <Form.Group as={Col} controlId="artiste_name">
                         <Form.Label>Artist Name</Form.Label>
                         <Form.Control
+                            required
                             type="text"
                             name="artiste_name"
                             placeholder="name"
