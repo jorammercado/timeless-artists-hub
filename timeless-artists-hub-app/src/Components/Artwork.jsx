@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import "./Artwork.css"
 
-function Artwork(artwork) {
+function Artwork({artwork}) {
     return (
         <tr>
             <td>{artwork.is_favorite?`\u2605`:""}</td>

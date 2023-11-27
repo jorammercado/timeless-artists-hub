@@ -3,16 +3,15 @@ import { useNavigate, useParams } from "react-router-dom"
 import Table from "react-bootstrap/Table"
 import Button from "react-bootstrap/Button"
 import Artwork from "./Artwork"
-import "./ArtworkList.css"
+import "./ArtworkListDirect.css"
 
 const API = import.meta.env.VITE_API_URL
 
-export default function ArtworkList() {
+export default function ArtworkListDirect() {
     const navigate = useNavigate()
-    let { artist_id } = useParams()
     const [allArtworks, setAllArtworks] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-    const [artworksPerPage, setArtworksPerPage] = useState(7)
+    const [artworksPerPage, setArtworksPerPage] = useState(10)
     const [artworksOrder, setArtworksOrder] = useState(false)
     const [styleOrder, setStyleOrder] = useState(false)
     const [dateOrder, setDateOrder] = useState(false)
@@ -21,21 +20,21 @@ export default function ArtworkList() {
     const changeOrderStyle = () => {
         if (styleOrder === false) {
             setStyleOrder(true)
-            fetch(`${API}/artistes/${artist_id}/artworks/?order=ascStyle`)
+            fetch(`${API}/artworks/?order=ascStyle`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => setAllArtworks(artworks))
                 .then((res) => {
-                    navigate(`/artists/${artist_id}/artworks/?order=ascStyle`)
+                    navigate(`/artworks/?order=ascStyle`)
                 })
                 .catch(error => console.log(error))
         }
         else {
             setStyleOrder(false)
-            fetch(`${API}/artistes/${artist_id}/artworks/?order=descStyle`)
+            fetch(`${API}/artworks/?order=descStyle`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => setAllArtworks(artworks))
                 .then((res) => {
-                    navigate(`/artists/${artist_id}/artworks/?order=descStyle`)
+                    navigate(`/artworks/?order=descStyle`)
                 })
                 .catch(error => console.log(error))
         }
@@ -44,21 +43,21 @@ export default function ArtworkList() {
     const changeOrderDate = () => {
         if (dateOrder === false) {
             setDateOrder(true)
-            fetch(`${API}/artistes/${artist_id}/artworks/?order=ascDate`)
+            fetch(`${API}/artworks/?order=ascDate`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => setAllArtworks(artworks))
                 .then((res) => {
-                    navigate(`/artists/${artist_id}/artworks/?order=ascDate`)
+                    navigate(`/artworks/?order=ascDate`)
                 })
                 .catch(error => console.log(error))
         }
         else {
             setDateOrder(false)
-            fetch(`${API}/artistes/${artist_id}/artworks/?order=descDate`)
+            fetch(`${API}/artworks/?order=descDate`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtists(artworks.allArtworks))
+                .then(artworks => setAllArtists(artworks))
                 .then((res) => {
-                    navigate(`/artists/${artist_id}/artworks/?order=descDate`)
+                    navigate(`/artworks/?order=descDate`)
                 })
                 .catch(error => console.log(error))
         }
@@ -67,21 +66,21 @@ export default function ArtworkList() {
     const changeOrderFav = () => {
         if (favOrder === false) {
             setFavOrder(true)
-            fetch(`${API}/artistes/${artist_id}/artworks/?is_favorite=true`)
+            fetch(`${API}/artworks/?is_favorite=true`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => setAllArtworks(artworks))
                 .then((res) => {
-                    navigate(`/artists/${artist_id}/artworks/?is_favorite=true`)
+                    navigate(`/artworks/?is_favorite=true`)
                 })
                 .catch(error => console.log(error))
         }
         else {
             setFavOrder(false)
-            fetch(`${API}/artistes/${artist_id}/artworks/?is_favorite=false`)
+            fetch(`${API}/artworks/?is_favorite=false`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => setAllArtworks(artworks))
                 .then((res) => {
-                    navigate(`/artists/${artist_id}/artworks/?is_favorite=false`)
+                    navigate(`/artworks/?is_favorite=false`)
                 })
                 .catch(error => console.log(error))
         }
@@ -135,10 +134,10 @@ export default function ArtworkList() {
     }
 
     useEffect(() => {
-        fetch(`${API}/artistes/${artist_id}/artworks`)
+        fetch(`${API}/artworks`)
             .then((response) => response.json())
             .then((artworks) => {
-                setAllArtworks(artworks.allArtworks)
+                setAllArtworks(artworks)
             })
             .catch((error) => {
                 console.error("Error fetching data: ", error)

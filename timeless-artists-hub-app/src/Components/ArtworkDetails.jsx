@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { Link, useParams, useNavigate } from "react-router-dom"
 import React from 'react'
 import "./ArtworkDetails.css"
-const API = import.meta.env.VITE_BASE_URL
+const API = import.meta.env.VITE_API_URL
 
 function ArtworkDetails() {
     const [artwork, setArtwork] = useState({
@@ -57,9 +57,7 @@ function ArtworkDetails() {
                     <tr >
                         <th colSpan="4"> Date Created: {artwork.date_created} </th>
                     </tr>
-                    <tr >
-                        <th colSpan="4"> Genre: {artist.genre} </th>
-                    </tr>
+                    
 
                 </tbody>
 
