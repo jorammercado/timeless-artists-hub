@@ -4,8 +4,7 @@ import "./Index.css"
 function Index() {
   return (
     <div className="index">
-      <div className="index-title">Artist List
-      </div>
+      <div className="index-title"> </div>
       <ArtistList />
     </div>
   );
