@@ -41,31 +41,24 @@ function ArtistDetails() {
     }
 
     const handleNavArtworks = () => {
-        try {
-            fetch(`${API}/artistes/${artist_id}/artworks`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.error) {
-                        throw new Error(data.error)
-                    }
-                    else if (data.err) {
-                        throw new Error(data.err)
-                    }
-                    else {
-                        navigate(`/artists/${artist_id}/artworks`)
-                    }
-                })
-                .catch((err) => {
-                    alert(err)
-                    console.error(err)
-                    navigate(`/artists/${artist_id}`)
-                })
-        }
-        catch (err) {
-            alert(err)
-            console.error(err)
-            navigate(`/artists/${artist_id}`)
-        }
+        fetch(`${API}/artistes/${artist_id}/artworks`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    throw new Error(data.error)
+                }
+                else if (data.err) {
+                    throw new Error(data.err)
+                }
+                else {
+                    navigate(`/artists/${artist_id}/artworks`)
+                }
+            })
+            .catch((err) => {
+                alert(err)
+                console.error(err)
+                navigate(`/artists/${artist_id}`)
+            })
     }
 
     return (
@@ -115,11 +108,17 @@ function ArtistDetails() {
                     </button>
                 </Link>
                 <button onClick={() => navigate(-1)}>
-                    <span>Back</span>
+                    Back
                 </button>
+                <Link className="edit" to={`/artists/${artist_id}/artworks/new`}>
+                    <button>
+                        New Artwork
+                    </button>
+                </Link>
                 <button onClick={handleNavArtworks}>
-                    Artworks
+                    Artist Artworks List
                 </button>
+                
 
 
             </div>

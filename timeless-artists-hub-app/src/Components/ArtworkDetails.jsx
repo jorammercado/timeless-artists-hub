@@ -65,8 +65,14 @@ function ArtworkDetails() {
                 </tbody>
             </table>
             <div className="show-navigation">
+                <button onClick={() => navigate(-1)}>
+                    Back
+                </button>
                 <button onClick={handleDelete}>
                     Delete
+                </button>
+                <button onClick={() => navigate(`/artists/${artist_id}`)}>
+                    Artist Details
                 </button>
                 <button onClick={() => navigate(`/artists/${artist_id}/artworks`)}>
                     Artist Artworks
