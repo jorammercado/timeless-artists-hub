@@ -1,18 +1,28 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import Table from "react-bootstrap/Table"
 import Button from "react-bootstrap/Button"
 import Artwork from "./Artwork"
 import "./ArtworkList.css"
+import Pagination from "./Pagination"
 
 const API = import.meta.env.VITE_API_URL
 
 export default function ArtworkList() {
     const navigate = useNavigate()
     let { artist_id } = useParams()
+    const [artist, setArtist] = useState({
+        artiste_name: "",
+        birth_year: 0,
+        death_year: 0,
+        genre: "",
+        nationality: "",
+        bio: "",
+        wikipedia_link: "",
+        youtube_link: "",
+        is_favorite: false
+    })
     const [allArtworks, setAllArtworks] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-    const [artworksPerPage, setArtworksPerPage] = useState(10)
     const [artworksOrder, setArtworksOrder] = useState(false)
     const [styleOrder, setStyleOrder] = useState(false)
     const [dateOrder, setDateOrder] = useState(false)
@@ -137,21 +147,28 @@ export default function ArtworkList() {
     useEffect(() => {
         fetch(`${API}/artistes/${artist_id}/artworks`)
             .then((response) => response.json())
-            .then((artworks) => {
-                setAllArtworks(artworks.allArtworks)
+            .then((data) => {
+                setAllArtworks(data.allArtworks)
+                setArtist(data)
             })
             .catch((error) => {
                 console.error("Error fetching data: ", error)
             })
     }, [])
 
-    const indexOfLastArtwork = currentPage * artworksPerPage
-    const indexOfFirstArtwork = indexOfLastArtwork - artworksPerPage
-    const currentArtworks = allArtworks.slice(indexOfFirstArtwork, indexOfLastArtwork)
-    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+    let PageSize = 10
+    const [currentPageV2, setCurrentPageV2] = useState(1)
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPageV2 - 1) * PageSize
+        const lastPageIndex = firstPageIndex + PageSize
+        return allArtworks.slice(firstPageIndex, lastPageIndex)
+    }, [currentPageV2, allArtworks])
 
     return (
         <div className="artworks">
+            <div>
+                {artist.artiste_name}'s artworks in database: {allArtworks.length}
+            </div>
             <section>
                 <Table className="table" striped bordered hover>
                     <thead>
@@ -179,37 +196,28 @@ export default function ArtworkList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentArtworks.map((artwork, index) => {
+                        {currentTableData.map((artwork, index) => {
                             return (
                                 <Artwork
                                     key={artwork.id}
                                     artwork={artwork}
-                                    index={index + 1 + (currentPage - 1) * artworksPerPage}
                                 />
                             )
                         })}
                     </tbody>
                 </Table>
-                <div className="pagination">
-                    <Button
-                        className="btn"
-                        onClick={() => paginate(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        variant="primary"
-                    >
-                        Previous
-                    </Button>
-                    <span>Page {currentPage}</span>
-                    <Button
-                        className="btn"
-                        onClick={() => paginate(currentPage + 1)}
-                        disabled={indexOfLastArtwork >= allArtworks.length}
-                        variant="primary"
-                    >
-                        Next
-                    </Button>
-                </div>
+
+                <Pagination
+                    className="pagination-bar"
+                    currentPage={currentPageV2}
+                    totalCount={allArtworks.length}
+                    pageSize={PageSize}
+                    onPageChange={page => setCurrentPageV2(page)}
+                />
             </section>
+            <button onClick={() => navigate(-1)}>
+                <span>Back</span>
+            </button>
         </div>
     )
 }

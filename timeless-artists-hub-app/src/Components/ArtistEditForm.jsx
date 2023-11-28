@@ -31,8 +31,8 @@ export default function ArtistEditForm() {
         })
     }
 
-    const updateArtist = async () => {
-        await fetch(`${API}/artistes/${id}`, {
+    const updateArtist = () => {
+        fetch(`${API}/artistes/${id}`, {
             method: "PUT",
             body: JSON.stringify(artist),
             headers: {
@@ -41,10 +41,10 @@ export default function ArtistEditForm() {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.error ) {
+                if (data.error) {
                     throw new Error(data.error)
                 }
-                else if (data.err ) {
+                else if (data.err) {
                     throw new Error(data.err)
                 }
                 else
@@ -67,12 +67,7 @@ export default function ArtistEditForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        try {
-            const response = updateArtist()
-        }
-        catch (error) {
-            console.log("\nresponse9=", error, "hi", response)
-        }
+        updateArtist()
     }
 
     const handleBack = () => {
