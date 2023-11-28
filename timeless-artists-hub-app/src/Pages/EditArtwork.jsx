@@ -5,7 +5,7 @@ function EditArtwork() {
     return (
         <div className="edit">
             <div className="edit-artwork-title">
-                Edit Artwork Form
+                Edit Artwork 
             </div >
             <div className="edit-artwork-form-container">
                 <ArtworkEditForm />

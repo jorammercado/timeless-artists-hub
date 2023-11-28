@@ -68,8 +68,8 @@ function ArtworkDetails() {
                 <button onClick={handleDelete}>
                     Delete
                 </button>
-                <button onClick={() => navigate(-1)}>
-                    Back
+                <button onClick={() => navigate(`/artists/${artist_id}/artworks`)}>
+                    Artist Artworks
                 </button>
                 <button onClick={() => navigate(`/artists/${artist_id}/artworks/${id}/edit`)} >
                     Edit

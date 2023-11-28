@@ -12,6 +12,7 @@ const API = import.meta.env.VITE_API_URL
 export default function ArtworkEditForm() {
     let { artist_id, id } = useParams()
     const [artwork, setArtwork] = useState({
+        artiste_name: "",
         artwork_name: "",
         style: "",
         date_created: "",
@@ -36,11 +37,21 @@ export default function ArtworkEditForm() {
                 "Content-Type": "application/json",
             },
         })
-            .then((response) => {
-                navigate(`/artists/${artist_id}/artworks`)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.error) {
+                    throw new Error(data.error)
+                }
+                else if (data.err) {
+                    throw new Error(data.err)
+                }
+                else
+                    alert(`Artwork ${data.artwork_name} successfully updated!`)
+                navigate(`/artists/${artist_id}/artworks/${id}`)
             })
             .catch((error) => {
-                console.error("Error:", error)
+                alert(error)
+                console.error(error)
             })
     }
 
@@ -59,7 +70,7 @@ export default function ArtworkEditForm() {
     }
 
     const handleBack = () => {
-        navigate(`/artists/${artist_id}/artworks`)
+        navigate(-1)
     }
 
     return (
@@ -117,23 +128,19 @@ export default function ArtworkEditForm() {
                 <Form.Group className="mb-3" controlId="is_favorite">
                     <Form.Label>Is Favorite</Form.Label>
                     <Form.Check
-                        type="checkbox" 
+                        type="checkbox"
                         name="is_favorite"
                         onChange={handleInputChange}
                         checked={artwork.is_favorite}
                     />
                 </Form.Group>
                 <div className="form-edit-button">
-                    <div>
-                        <Button className="update" variant="primary" type="submit">
-                            Update Artwork
-                        </Button>
-                    </div>
-                    <div>
-                        <Button variant="secondary" onClick={handleBack} type="submit">
-                            Back
-                        </Button>
-                    </div>
+                    <button className="update" variant="primary" type="submit">
+                        Update Artwork
+                    </button>
+                    <button variant="primary" onClick={handleBack} type="submit">
+                        Back
+                    </button>
                 </div>
             </Form>
         </div>
