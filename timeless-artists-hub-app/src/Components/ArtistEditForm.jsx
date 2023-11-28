@@ -31,19 +31,28 @@ export default function ArtistEditForm() {
         })
     }
 
-    const updateArtist = () => {
-        fetch(`${API}/artistes/${id}`, {
+    const updateArtist = async () => {
+        await fetch(`${API}/artistes/${id}`, {
             method: "PUT",
             body: JSON.stringify(artist),
             headers: {
                 "Content-Type": "application/json",
             },
         })
-            .then((response) => {
+            .then(response => response.json())
+            .then(data => {
+                if (data.error ) {
+                    throw new Error(data.error)
+                }
+                else if (data.err ) {
+                    throw new Error(data.err)
+                }
+                else
                     navigate(`/artists/${id}`)
             })
             .catch((error) => {
-                console.error("Error:", error)
+                alert(error)
+                console.error(error)
             })
     }
 
@@ -58,7 +67,12 @@ export default function ArtistEditForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        updateArtist()
+        try {
+            const response = updateArtist()
+        }
+        catch (error) {
+            console.log("\nresponse9=", error, "hi", response)
+        }
     }
 
     const handleBack = () => {
@@ -169,7 +183,7 @@ export default function ArtistEditForm() {
                 </Row>
 
                 <Form.Group className="mb-3" controlId="is_favorite">
-                <Form.Label>Is Favorite</Form.Label>
+                    <Form.Label>Is Favorite</Form.Label>
                     <Form.Check
                         type="checkbox"
                         name="is_favorite"
