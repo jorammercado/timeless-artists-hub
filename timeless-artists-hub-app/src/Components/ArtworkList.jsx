@@ -232,7 +232,6 @@ export default function ArtworkList() {
                         }, itemIndex)}
                     </tbody>
                 </Table>
-
                 <Pagination
                     className="pagination-bar"
                     currentPage={currentPageV2}

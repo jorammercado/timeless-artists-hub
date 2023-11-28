@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import { useNavigate } from "react-router-dom"
 import Table from "react-bootstrap/Table"
 import Button from "react-bootstrap/Button"
 import Artist from "./Artist"
 import "./ArtistList.css"
+import Pagination from "./Pagination"
 
 const API = import.meta.env.VITE_API_URL
 
 export default function ArtistList() {
     const navigate = useNavigate()
+    const [itemIndex, setItemIndex] = useState([])
     const [allArtists, setAllArtists] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [artistsPerPage, setArtistsPerPage] = useState(10)
@@ -23,7 +25,10 @@ export default function ArtistList() {
             setGenreOrder(true)
             fetch(`${API}/artistes/?order=ascGen`)
                 .then((response) => response.json())
-                .then(artists => setAllArtists(artists))
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
                 .then((res) => {
                     navigate('/artists/?order=ascGen')
                 })
@@ -33,7 +38,10 @@ export default function ArtistList() {
             setGenreOrder(false)
             fetch(`${API}/artistes/?order=descGen`)
                 .then((response) => response.json())
-                .then(artists => setAllArtists(artists))
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
                 .then((res) => {
                     navigate('/artists/?order=descGen')
                 })
@@ -46,7 +54,10 @@ export default function ArtistList() {
             setBirthOrder(true)
             fetch(`${API}/artistes/?order=ascBir`)
                 .then((response) => response.json())
-                .then(artists => setAllArtists(artists))
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
                 .then((res) => {
                     navigate('/artists/?order=ascBir')
                 })
@@ -56,7 +67,10 @@ export default function ArtistList() {
             setBirthOrder(false)
             fetch(`${API}/artistes/?order=descBir`)
                 .then((response) => response.json())
-                .then(artists => setAllArtists(artists))
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
                 .then((res) => {
                     navigate('/artists/?order=descBir')
                 })
@@ -69,7 +83,10 @@ export default function ArtistList() {
             setFavOrder(true)
             fetch(`${API}/artistes/?is_favorite=true`)
                 .then((response) => response.json())
-                .then(artists => setAllArtists(artists))
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
                 .then((res) => {
                     navigate('/artists/?is_favorite=true')
                 })
@@ -79,7 +96,10 @@ export default function ArtistList() {
             setFavOrder(false)
             fetch(`${API}/artistes/?is_favorite=false`)
                 .then((response) => response.json())
-                .then(artists => setAllArtists(artists))
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
                 .then((res) => {
                     navigate('/artists/?is_favorite=false')
                 })
@@ -92,7 +112,10 @@ export default function ArtistList() {
             setNationalityOrder(true)
             fetch(`${API}/artistes/?order=ascNa`)
                 .then((response) => response.json())
-                .then(artists => setAllArtists(artists))
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
                 .then((res) => {
                     navigate('/artists/?order=ascNa')
                 })
@@ -102,7 +125,10 @@ export default function ArtistList() {
             setNationalityOrder(false)
             fetch(`${API}/artistes/?order=descNa`)
                 .then((response) => response.json())
-                .then(artists => setAllArtists(artists))
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
                 .then((res) => {
                     navigate('/artists/?order=descNa')
                 })
@@ -113,27 +139,29 @@ export default function ArtistList() {
     const changeArtistOrder = () => {
         if (artistsOrder === false) {
             setArtistsOrder(true)
-            const newOrder = allArtists.sort((a, b) => {
-                if (a.artiste_name.toLowerCase() < b.artiste_name.toLowerCase())
-                    return -1
-                else if (a.artiste_name.toLowerCase() > b.artiste_name.toLowerCase())
-                    return 1
-                else
-                    return 0
-            })
-            setAllArtists(newOrder)
+            fetch(`${API}/artistes/?order=asc`)
+                .then((response) => response.json())
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
+                .then((res) => {
+                    navigate('/artists/?order=asc')
+                })
+                .catch(error => console.log(error))
         }
         else {
             setArtistsOrder(false)
-            const newOrder = allArtists.sort((b, a) => {
-                if (a.artiste_name.toLowerCase() < b.artiste_name.toLowerCase())
-                    return -1
-                else if (a.artiste_name.toLowerCase() > b.artiste_name.toLowerCase())
-                    return 1
-                else
-                    return 0
-            })
-            setAllArtists(newOrder)
+            fetch(`${API}/artistes/?order=desc`)
+                .then((response) => response.json())
+                .then(artists => {
+                    setAllArtists(artists)
+                    setItemIndex(artists.map(elem => elem.id))
+                })
+                .then((res) => {
+                    navigate('/artists/?order=desc')
+                })
+                .catch(error => console.log(error))
         }
     }
 
@@ -167,16 +195,20 @@ export default function ArtistList() {
             .then((response) => response.json())
             .then((artists) => {
                 setAllArtists(artists)
+                setItemIndex(artists.map(elem => elem.id))
             })
             .catch((error) => {
                 console.error("Error fetching data: ", error)
             })
     }, [])
 
-    const indexOfLastArtist = currentPage * artistsPerPage
-    const indexOfFirstArtist = indexOfLastArtist - artistsPerPage
-    const currentArtists = allArtists.slice(indexOfFirstArtist, indexOfLastArtist)
-    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+    let PageSize = 10
+    const [currentPageV2, setCurrentPageV2] = useState(1)
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPageV2 - 1) * PageSize
+        const lastPageIndex = firstPageIndex + PageSize
+        return allArtists.slice(firstPageIndex, lastPageIndex)
+    }, [currentPageV2, allArtists])
 
     return (
         <div className="artists">
@@ -184,6 +216,9 @@ export default function ArtistList() {
                 <Table className="table" striped bordered hover>
                     <thead>
                         <tr className="table-row">
+                            <th>
+                                #
+                            </th>
                             <th className="is_favorite">
                                 <Button className="btn btn-secondary btn-sm" onClick={handleSortArtistsFav}>
                                     {`\u2605`}
@@ -212,36 +247,24 @@ export default function ArtistList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentArtists.map((artist, index) => {
+                        {currentTableData.map(artist => {
+                            { artist.index = itemIndex.indexOf(artist.id) + 1 }
                             return (
                                 <Artist
                                     key={artist.id}
                                     artist={artist}
-                                    index={index + 1 + (currentPage - 1) * artistsPerPage}
                                 />
                             )
-                        })}
+                        }, itemIndex)}
                     </tbody>
                 </Table>
-                <div className="pagination">
-                    <Button
-                        className="btn"
-                        onClick={() => paginate(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        variant="primary"
-                    >
-                        Previous
-                    </Button>
-                    <span>Page {currentPage}</span>
-                    <Button
-                        className="btn"
-                        onClick={() => paginate(currentPage + 1)}
-                        disabled={indexOfLastArtist >= allArtists.length}
-                        variant="primary"
-                    >
-                        Next
-                    </Button>
-                </div>
+                <Pagination
+                    className="pagination-bar"
+                    currentPage={currentPageV2}
+                    totalCount={allArtists.length}
+                    pageSize={PageSize}
+                    onPageChange={page => setCurrentPageV2(page)}
+                />
             </section>
         </div>
     )
