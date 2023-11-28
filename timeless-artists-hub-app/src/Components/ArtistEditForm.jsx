@@ -47,8 +47,10 @@ export default function ArtistEditForm() {
                 else if (data.err) {
                     throw new Error(data.err)
                 }
-                else
+                else{
+                    alert(`Artist ${data.artiste_name} succesfully updated`)
                     navigate(`/artists/${id}`)
+                }
             })
             .catch((error) => {
                 alert(error)
@@ -189,18 +191,18 @@ export default function ArtistEditForm() {
 
                 <div className="form-edit-button">
                     <div className="button-update">
-                        <Button className="update atlBtnColor" variant="primary" type="submit">
+                        <button className="update atlBtnColor" variant="primary" type="submit">
                             <span>
                                 Update Artist
                             </span>
-                        </Button>
+                        </button>
                     </div>
                     <div className="button-back">
-                        <Button className="back" variant="secondary" onClick={handleBack} type="submit">
+                        <button className="back" variant="secondary" onClick={handleBack} type="submit">
                             <span>
                                 Back
                             </span>
-                        </Button>
+                        </button>
                     </div>
                 </div>
 

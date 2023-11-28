@@ -40,6 +40,34 @@ function ArtistDetails() {
             .catch((err) => console.error(err))
     }
 
+    const handleNavArtworks = () => {
+        try {
+            fetch(`${API}/artistes/${artist_id}/artworks`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error)
+                    }
+                    else if (data.err) {
+                        throw new Error(data.err)
+                    }
+                    else {
+                        navigate(`/artists/${artist_id}/artworks`)
+                    }
+                })
+                .catch((err) => {
+                    alert(err)
+                    console.error(err)
+                    navigate(`/artists/${artist_id}`)
+                })
+        }
+        catch (err) {
+            alert(err)
+            console.error(err)
+            navigate(`/artists/${artist_id}`)
+        }
+    }
+
     return (
         <article className="topArtist">
             <table className="tableArtist">
@@ -68,7 +96,9 @@ function ArtistDetails() {
                         <th colSpan="4">
                             <form>
                                 <iframe width="420" height="315"
-                                    src={`${artist.youtube_link}`}>
+                                    src={`${artist.youtube_link}`}
+                                    title="youtube link"
+                                >
                                 </iframe>
                             </form>
                         </th>
@@ -87,11 +117,10 @@ function ArtistDetails() {
                 <button onClick={() => navigate(-1)}>
                     <span>Back</span>
                 </button>
-                <Link className="artworks" to={`/artists/${artist_id}/artworks`}>
-                    <button>
-                        Artworks
-                    </button>
-                </Link>
+                <button onClick={handleNavArtworks}>
+                    Artworks
+                </button>
+
 
             </div>
             <br></br>

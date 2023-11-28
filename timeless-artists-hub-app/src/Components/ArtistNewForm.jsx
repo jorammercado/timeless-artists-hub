@@ -31,10 +31,23 @@ export default function ArtistNewForm() {
                 "Content-Type": "application/json",
             },
         })
-            .then(() => {
-                navigate(`/artistes`)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.error) {
+                    throw new Error(data.error)
+                }
+                else if (data.err) {
+                    throw new Error(data.err)
+                }
+                else {
+                    alert(`Artist ${data.artiste_name} succesfully created`)
+                    navigate(`/artists/${data.id}`)
+                }
             })
-            .catch((error) => console.error("catch", error))
+            .catch((error) => {
+                alert(error)
+                console.error(error)
+            })
     }
 
     const handleInputChange = (e) => {
@@ -51,7 +64,7 @@ export default function ArtistNewForm() {
     }
 
     const handleCancel = () => {
-        navigate("/artists")
+        navigate("/")
     }
 
     const handleReset = () => {
@@ -181,15 +194,15 @@ export default function ArtistNewForm() {
                     />
                 </Form.Group>
                 <div className="form-container-button">
-                    <Button className="new" variant="primary" type="submit">
-                        <span>New Artist</span>
-                    </Button>
-                    <Button className="clear" variant="outline-primary" onClick={handleReset} type="button">
-                        <span>Clear</span>
-                    </Button>
-                    <Button className="cancel" variant="secondary" onClick={handleCancel} type="button">
-                        <span>Cancel</span>
-                    </Button>
+                    <button className="new" variant="primary" type="submit">
+                        Create Artist
+                    </button>
+                    <button className="clear" variant="outline-primary" onClick={handleReset} type="button">
+                        Clear
+                    </button>
+                    <button className="cancel" variant="secondary" onClick={handleCancel} type="button">
+                        Cancel
+                    </button>
                 </div>
             </Form>
         </div>
