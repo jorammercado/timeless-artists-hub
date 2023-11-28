@@ -28,9 +28,11 @@ function ArtworkDetails() {
     const handleDelete = () => {
         const httpOptions = { "method": "DELETE" }
         fetch(`${API}/artistes/${artist_id}/artworks/${id}`, httpOptions)
-            .then((res) => {
-                alert("Artwork was deleted!")
-                navigate(`/artistes/${artist_id}/artworks`)
+            .then(res => res.json())
+            .then(data => {
+                alert(`Artwork ${data.artwork_name}` +
+                    ` by ${data.artiste_name} was deleted!`)
+                navigate(`/artists/${artist_id}/artworks`)
             })
             .catch((err) => console.error(err))
     }
@@ -39,14 +41,13 @@ function ArtworkDetails() {
         <article className="topArtist">
             <table className="tableArtist">
                 <tbody>
-
                     <tr >
-                        <th colSpan="4"> 
-                            <img 
-                                src={`${artwork.img_link}`} 
+                        <th colSpan="4">
+                            <img
+                                src={`${artwork.img_link}`}
                                 alt={`Poster of ${artwork.artwork_name}`}
                                 style={{ height: "400px" }}
-                            /> 
+                            />
                         </th>
                     </tr>
                     <tr >
@@ -61,22 +62,18 @@ function ArtworkDetails() {
                     <tr >
                         <th colSpan="4"> Date Created: {artwork.date_created} </th>
                     </tr>
-
-
                 </tbody>
-
             </table>
             <div className="show-navigation">
-                <Link to={`/artists/${artist_id}/artworks`}>
-                    <button>Artworks</button>
-                </Link>
-                <Link className="delete" to={`/artists/${artist_id}/artworks`}>
-                    <button onClick={handleDelete}>Delete</button>
-                </Link>
-                <Link className="back" to={`/artists/${artist_id}/artworks`}> <button> Back </button> </Link>
-                <Link className="edit" to={`/artists/${artist_id}/artworks/${id}`}>Edit</Link>
-                <Link className="artworks" to={`/artists/${artist_id}/artworks`}>Artworks</Link>
-                
+                <button onClick={handleDelete}>
+                    Delete
+                </button>
+                <button onClick={() => navigate(-1)}>
+                    Back
+                </button>
+                <button onClick={() => navigate(`/artists/${artist_id}/artworks/${id}/edit`)} >
+                    Edit
+                </button>
             </div>
             <br></br>
         </article>

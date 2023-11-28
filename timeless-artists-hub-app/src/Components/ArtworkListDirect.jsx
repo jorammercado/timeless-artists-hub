@@ -11,24 +11,11 @@ const API = import.meta.env.VITE_API_URL
 export default function ArtworkListDirect() {
     const navigate = useNavigate()
     const [allArtworks, setAllArtworks] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-    const [artworksPerPage, setArtworksPerPage] = useState(10)
     const [artworksOrder, setArtworksOrder] = useState(false)
     const [styleOrder, setStyleOrder] = useState(false)
     const [dateOrder, setDateOrder] = useState(false)
     const [favOrder, setFavOrder] = useState(false)
     const [itemIndex, setItemIndex] = useState([])
-    const [artist, setArtist] = useState({
-        artiste_name: "",
-        birth_year: 0,
-        death_year: 0,
-        genre: "",
-        nationality: "",
-        bio: "",
-        wikipedia_link: "",
-        youtube_link: "",
-        is_favorite: false
-    })
 
     const changeOrderStyle = () => {
         if (styleOrder === false) {
