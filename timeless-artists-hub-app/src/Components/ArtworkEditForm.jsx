@@ -70,7 +70,7 @@ export default function ArtworkEditForm() {
     }
 
     const handleBack = () => {
-        navigate(-1)
+        navigate(`/artists/${artist_id}/artworks/${id}`)
     }
 
     return (

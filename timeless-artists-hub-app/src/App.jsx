@@ -13,8 +13,6 @@ import Show from "./Pages/Show"
 import ShowArtwork from "./Pages/ShowArtwork"
 import NavBar from "./Components/NavBar"
 import IndexArtworkDirect from "./Pages/IndexArtworkDirect"
-import ShowArtworkDirect from "./Pages/ShowArtworkDirect"
-import EditArtworkDirect from "./Pages/EditArtworkDirect"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css"
 
@@ -31,8 +29,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/artists" element={<Index />} />
           <Route path="/artworks" element={<IndexArtworkDirect />} />
-          <Route path="/artworks/:id" element={<ShowArtworkDirect />} />
-          <Route path="/artworks/:id/edit" element={<EditArtworkDirect />} />
           <Route path="/artists/new" element={<New />} />
           <Route path="/artists/:artist_id" element={<Show />} />
           <Route path="/artists/:artist_id/artworks" element={<IndexArtwork />} />
