@@ -172,9 +172,9 @@ export default function ArtistNewForm() {
                 </Row>
 
                 <Form.Group className="mb-3" controlId="is_favorite">
+                    <Form.Label>Is Favorite</Form.Label>
                     <Form.Check
                         type="checkbox"
-                        label="Is Favorite"
                         name="is_favorite"
                         checked={artist.is_favorite}
                         onChange={handleInputChange}

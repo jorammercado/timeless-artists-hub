@@ -39,11 +39,15 @@ function ArtworkDetails() {
         <article className="topArtist">
             <table className="tableArtist">
                 <tbody>
-                    <tr>
-                        <td> <img src={`${artwork.img_link}`} /> </td>
-                    </tr>
+
                     <tr >
-                        <th colSpan="4"> <img src={`${artwork.img_link}`} /> </th>
+                        <th colSpan="4"> 
+                            <img 
+                                src={`${artwork.img_link}`} 
+                                alt={`Poster of ${artwork.artwork_name}`}
+                                style={{ height: "400px" }}
+                            /> 
+                        </th>
                     </tr>
                     <tr >
                         <th colSpan="4"> Artist: {artwork.artiste_name} </th>
@@ -57,22 +61,22 @@ function ArtworkDetails() {
                     <tr >
                         <th colSpan="4"> Date Created: {artwork.date_created} </th>
                     </tr>
-                    
+
 
                 </tbody>
 
             </table>
             <div className="show-navigation">
-                <Link to={`/artistes/${artist_id}/artworks`}>
+                <Link to={`/artists/${artist_id}/artworks`}>
                     <button>Artworks</button>
                 </Link>
-                <Link to={`/artistes/${artist_id}/artworks`}>
+                <Link className="delete" to={`/artists/${artist_id}/artworks`}>
                     <button onClick={handleDelete}>Delete</button>
                 </Link>
-                <Link className="back" to={`/artistes/${artist_id}/artworks`}>Back</Link>
-                <Link className="edit" to={`/artistes/${artist_id}/artworks/${id}`}>Edit</Link>
+                <Link className="back" to={`/artists/${artist_id}/artworks`}> <button> Back </button> </Link>
+                <Link className="edit" to={`/artists/${artist_id}/artworks/${id}`}>Edit</Link>
                 <Link className="artworks" to={`/artists/${artist_id}/artworks`}>Artworks</Link>
-                <Link className="delete" onClick={handleDelete}>Delete</Link>
+                
             </div>
             <br></br>
         </article>

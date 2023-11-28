@@ -7,7 +7,7 @@ export default function Artist({ artist }) {
         <tr>
             <td>{artist.is_favorite?`\u2605`:""}</td>
             <td>
-                <Link to={`/artists/${artist.id}`}>{artist.artiste_name} {artist.id}</Link>
+                <Link to={`/artists/${artist.id}`}>{artist.artiste_name} </Link>
             </td>
             <td>{artist.birth_year}-{artist.death_year}</td>
             <td>{artist.genre}</td>

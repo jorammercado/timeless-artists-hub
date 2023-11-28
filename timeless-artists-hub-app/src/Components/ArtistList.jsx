@@ -11,7 +11,7 @@ export default function ArtistList() {
     const navigate = useNavigate()
     const [allArtists, setAllArtists] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-    const [artistsPerPage, setArtistsPerPage] = useState(7)
+    const [artistsPerPage, setArtistsPerPage] = useState(10)
     const [artistsOrder, setArtistsOrder] = useState(false)
     const [genreOrder, setGenreOrder] = useState(false)
     const [nationalityOrder, setNationalityOrder] = useState(false)

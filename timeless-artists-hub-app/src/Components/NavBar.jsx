@@ -7,18 +7,18 @@ export default function NavBar() {
         <div className="navbar" >
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
                 <div className="container-fluid">
-                    <h1>
+                    <div>
                         <Link to="/">Home </Link>
-                    </h1>
-                    <h1>
+                    </div>
+                    <div>
                         <Link to="/artists">Artists </Link>
-                    </h1>
-                    <h1>
-                        <Link to="/artworks">Artworks </Link>
-                    </h1>
-                    <h1>
+                    </div>
+                    <div>
+                        <Link to="/artworks">All Artworks </Link>
+                    </div>
+                    <div>
                         <Link to="/artists/new">New Artist</Link>
-                    </h1>
+                    </div>
                     <span className="navbar-text">
                         Timeless Artist Hub
                     </span>

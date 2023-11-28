@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link, useParams, useNavigate } from "react-router-dom"
+import Button from "react-bootstrap/Button"
 import React from 'react'
 import "./ArtistDetails.css"
 const API = import.meta.env.VITE_API_URL
@@ -64,25 +65,34 @@ function ArtistDetails() {
                 </tbody>
                 <tbody >
                     <tr >
-                        <th colSpan="4"> 
-                            <iframe width="420" height="315"
-                                src={`${artist.youtube_link}`}>
-                            </iframe> 
+                        <th colSpan="4">
+                            <form>
+                                <iframe width="420" height="315"
+                                    src={`${artist.youtube_link}`}>
+                                </iframe>
+                            </form>
                         </th>
                     </tr>
                 </tbody>
             </table>
             <div className="show-navigation">
                 <Link to={`/artists`}>
-                    <button>Artists</button>
-                </Link>
-                <Link to={`/artists`}>
                     <button onClick={handleDelete}>Delete</button>
                 </Link>
-                <Link className="back" to={`/artists/`}>Back</Link>
-                <Link className="edit" to={`/artists/${artist_id}/edit`}>Edit</Link>
-                <Link className="artworks" to={`/artists/${artist_id}/artworks`}>Artworks</Link>
-                <Link className="delete" onClick={handleDelete}>Delete</Link>
+                <Link className="edit" to={`/artists/${artist_id}/edit`}>
+                    <button>
+                        Edit
+                    </button>
+                </Link>
+                <button onClick={() => navigate(-1)}>
+                    <span>Back</span>
+                </button>
+                <Link className="artworks" to={`/artists/${artist_id}/artworks`}>
+                    <button>
+                        Artworks
+                    </button>
+                </Link>
+
             </div>
             <br></br>
         </article>

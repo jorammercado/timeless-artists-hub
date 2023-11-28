@@ -115,9 +115,9 @@ export default function ArtworkEditForm() {
                     </Form.Group>
                 </Row>
                 <Form.Group className="mb-3" controlId="is_favorite">
+                    <Form.Label>Is Favorite</Form.Label>
                     <Form.Check
-                        type="checkbox"
-                        label="Is Favorite"
+                        type="checkbox" 
                         name="is_favorite"
                         onChange={handleInputChange}
                         checked={artwork.is_favorite}

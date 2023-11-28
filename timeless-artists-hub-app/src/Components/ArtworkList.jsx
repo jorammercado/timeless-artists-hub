@@ -12,7 +12,7 @@ export default function ArtworkList() {
     let { artist_id } = useParams()
     const [allArtworks, setAllArtworks] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-    const [artworksPerPage, setArtworksPerPage] = useState(7)
+    const [artworksPerPage, setArtworksPerPage] = useState(10)
     const [artworksOrder, setArtworksOrder] = useState(false)
     const [styleOrder, setStyleOrder] = useState(false)
     const [dateOrder, setDateOrder] = useState(false)
@@ -56,7 +56,7 @@ export default function ArtworkList() {
             setDateOrder(false)
             fetch(`${API}/artistes/${artist_id}/artworks/?order=descDate`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtists(artworks.allArtworks))
+                .then(artworks => setAllArtworks(artworks.allArtworks))
                 .then((res) => {
                     navigate(`/artists/${artist_id}/artworks/?order=descDate`)
                 })
@@ -69,7 +69,7 @@ export default function ArtworkList() {
             setFavOrder(true)
             fetch(`${API}/artistes/${artist_id}/artworks/?is_favorite=true`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => setAllArtworks(artworks))
                 .then((res) => {
                     navigate(`/artists/${artist_id}/artworks/?is_favorite=true`)
                 })
@@ -79,7 +79,7 @@ export default function ArtworkList() {
             setFavOrder(false)
             fetch(`${API}/artistes/${artist_id}/artworks/?is_favorite=false`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => setAllArtworks(artworks))
                 .then((res) => {
                     navigate(`/artists/${artist_id}/artworks/?is_favorite=false`)
                 })
@@ -166,12 +166,12 @@ export default function ArtworkList() {
                                     Artwork {` \u21f3`}
                                 </Button>
                             </th>
-                            <th className="years_alive">
+                            <th className="created">
                                 <Button className="btn btn-secondary btn-sm" onClick={handleSortArtworksDate}>
                                     Created {` \u21f3`}
                                 </Button>
                             </th>
-                            <th className="genre">
+                            <th className="style">
                                 <Button className="btn btn-secondary btn-sm" onClick={handleSortArtworksStyle}>
                                     Style {` \u21f3`}
                                 </Button>
