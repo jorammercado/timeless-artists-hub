@@ -11,6 +11,7 @@ const API = import.meta.env.VITE_API_URL
 export default function ArtworkList() {
     const navigate = useNavigate()
     let { artist_id } = useParams()
+    const [itemIndex, setItemIndex] = useState([])
     const [artist, setArtist] = useState({
         artiste_name: "",
         birth_year: 0,
@@ -33,7 +34,10 @@ export default function ArtworkList() {
             setStyleOrder(true)
             fetch(`${API}/artistes/${artist_id}/artworks/?order=ascStyle`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => {
+                    setAllArtworks(artworks.allArtworks)
+                    setItemIndex(artworks.allArtworks.map((elem, index) => elem.id))
+                })
                 .then((res) => {
                     navigate(`/artists/${artist_id}/artworks/?order=ascStyle`)
                 })
@@ -43,7 +47,10 @@ export default function ArtworkList() {
             setStyleOrder(false)
             fetch(`${API}/artistes/${artist_id}/artworks/?order=descStyle`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => {
+                    setAllArtworks(artworks.allArtworks)
+                    setItemIndex(artworks.allArtworks.map((elem, index) => elem.id))
+                })
                 .then((res) => {
                     navigate(`/artists/${artist_id}/artworks/?order=descStyle`)
                 })
@@ -56,7 +63,10 @@ export default function ArtworkList() {
             setDateOrder(true)
             fetch(`${API}/artistes/${artist_id}/artworks/?order=ascDate`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => {
+                    setAllArtworks(artworks.allArtworks)
+                    setItemIndex(artworks.allArtworks.map((elem, index) => elem.id))
+                })
                 .then((res) => {
                     navigate(`/artists/${artist_id}/artworks/?order=ascDate`)
                 })
@@ -66,7 +76,10 @@ export default function ArtworkList() {
             setDateOrder(false)
             fetch(`${API}/artistes/${artist_id}/artworks/?order=descDate`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks.allArtworks))
+                .then(artworks => {
+                    setAllArtworks(artworks.allArtworks)
+                    setItemIndex(artworks.allArtworks.map((elem, index) => elem.id))
+                })
                 .then((res) => {
                     navigate(`/artists/${artist_id}/artworks/?order=descDate`)
                 })
@@ -79,7 +92,10 @@ export default function ArtworkList() {
             setFavOrder(true)
             fetch(`${API}/artistes/${artist_id}/artworks/?is_favorite=true`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks))
+                .then(artworks => {
+                    setAllArtworks(artworks)
+                    setItemIndex(artworks.map((elem, index) => elem.id))
+                })
                 .then((res) => {
                     navigate(`/artists/${artist_id}/artworks/?is_favorite=true`)
                 })
@@ -89,7 +105,10 @@ export default function ArtworkList() {
             setFavOrder(false)
             fetch(`${API}/artistes/${artist_id}/artworks/?is_favorite=false`)
                 .then((response) => response.json())
-                .then(artworks => setAllArtworks(artworks))
+                .then(artworks => {
+                    setAllArtworks(artworks)
+                    setItemIndex(artworks.map((elem, index) => elem.id))
+                })
                 .then((res) => {
                     navigate(`/artists/${artist_id}/artworks/?is_favorite=false`)
                 })
@@ -100,27 +119,29 @@ export default function ArtworkList() {
     const changeArtworksOrder = () => {
         if (artworksOrder === false) {
             setArtworksOrder(true)
-            const newOrder = allArtworks.sort((a, b) => {
-                if (a.artwork_name.toLowerCase() < b.artwork_name.toLowerCase())
-                    return -1
-                else if (a.artwork_name.toLowerCase() > b.artwork_name.toLowerCase())
-                    return 1
-                else
-                    return 0
-            })
-            setAllArtworks(newOrder)
+            fetch(`${API}/artistes/${artist_id}/artworks/?order=asc`)
+                .then((response) => response.json())
+                .then(artworks => {
+                    setAllArtworks(artworks.allArtworks)
+                    setItemIndex(artworks.allArtworks.map((elem, index) => elem.id))
+                })
+                .then((res) => {
+                    navigate(`/artists/${artist_id}/artworks/?order=asc`)
+                })
+                .catch(error => console.log(error))
         }
         else {
             setArtworksOrder(false)
-            const newOrder = allArtworks.sort((b, a) => {
-                if (a.artwork_name.toLowerCase() < b.artwork_name.toLowerCase())
-                    return -1
-                else if (a.artwork_name.toLowerCase() > b.artwork_name.toLowerCase())
-                    return 1
-                else
-                    return 0
-            })
-            setAllArtworks(newOrder)
+            fetch(`${API}/artistes/${artist_id}/artworks/?order=desc`)
+                .then((response) => response.json())
+                .then(artworks => {
+                    setAllArtworks(artworks.allArtworks)
+                    setItemIndex(artworks.allArtworks.map((elem, index) => elem.id))
+                })
+                .then((res) => {
+                    navigate(`/artists/${artist_id}/artworks/?order=desc`)
+                })
+                .catch(error => console.log(error))
         }
     }
 
@@ -150,6 +171,7 @@ export default function ArtworkList() {
             .then((data) => {
                 setAllArtworks(data.allArtworks)
                 setArtist(data)
+                setItemIndex(data.allArtworks.map((elem, index) => elem.id))
             })
             .catch((error) => {
                 console.error("Error fetching data: ", error)
@@ -173,6 +195,9 @@ export default function ArtworkList() {
                 <Table className="table" striped bordered hover>
                     <thead>
                         <tr className="table-row">
+                            <th>
+                                #
+                            </th>
                             <th className="is_favorite">
                                 <Button className="btn btn-secondary btn-sm" onClick={handleSortArtworksFav}>
                                     {`\u2605`}
@@ -197,13 +222,14 @@ export default function ArtworkList() {
                     </thead>
                     <tbody>
                         {currentTableData.map((artwork, index) => {
+                            { artwork.index = itemIndex.indexOf(artwork.id) + 1 }
                             return (
                                 <Artwork
                                     key={artwork.id}
                                     artwork={artwork}
                                 />
                             )
-                        })}
+                        }, itemIndex)}
                     </tbody>
                 </Table>
 
