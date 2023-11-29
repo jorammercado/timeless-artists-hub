@@ -82,16 +82,16 @@ export default function ArtistNewForm() {
     }
 
     return (
-        <div>
-            <Form noValidate onSubmit={handleSubmit}>
+        <div className="form-new">
+            <Form className="form" noValidate onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="artiste_name">
-                        <Form.Label>Artist Name</Form.Label>
+                        <Form.Label>Name</Form.Label>
                         <Form.Control
                             required
                             type="text"
                             name="artiste_name"
-                            placeholder="name"
+                            placeholder="Artist Name"
                             value={artist.artiste_name}
                             onChange={handleInputChange}
                         />
@@ -138,7 +138,7 @@ export default function ArtistNewForm() {
                         <Form.Label>Nationality</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="nationality"
+                            placeholder="Nationality"
                             name="nationality"
                             value={artist.nationality}
                             onChange={handleInputChange}
@@ -158,12 +158,13 @@ export default function ArtistNewForm() {
                             onChange={handleInputChange}
                         />
                     </Form.Group>
-
+                </Row>
+                <Row className="mb-3">
                     <Form.Group as={Col} controlId="wikipedia_link">
                         <Form.Label>Wikipedia Link</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="wikipedia url"
+                            placeholder="wikipedia url link"
                             name="wikipedia_link"
                             value={artist.wikipedia_link}
                             onChange={handleInputChange}
@@ -176,7 +177,7 @@ export default function ArtistNewForm() {
                         <Form.Label>Youtube Link</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="youtube url"
+                            placeholder="youtube url link"
                             name="youtube_link"
                             value={artist.youtube_link}
                             onChange={handleInputChange}
@@ -194,13 +195,13 @@ export default function ArtistNewForm() {
                     />
                 </Form.Group>
                 <div className="form-container-button">
-                    <button className="new" variant="primary" type="submit">
+                    <button className="btn btn-dark btn-md" variant="primary" type="submit">
                         Create Artist
                     </button>
-                    <button className="clear" variant="outline-primary" onClick={handleReset} type="button">
+                    <button className="btn btn-dark btn-md" variant="outline-primary" onClick={handleReset} type="button">
                         Clear
                     </button>
-                    <button className="cancel" variant="secondary" onClick={handleCancel} type="button">
+                    <button className="btn btn-dark btn-md" variant="secondary" onClick={handleCancel} type="button">
                         Cancel
                     </button>
                 </div>
