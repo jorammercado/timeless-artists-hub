@@ -64,7 +64,7 @@ function ArtistDetails() {
 
     return (
         <article className="topArtist">
-            <table className="tableArtist">
+            <table className="tableArtist table table-bordered">
                 <tbody>
                     <tr className="artistName">
                         <th colSpan="4"> Name: {artist.artiste_name} </th>
@@ -81,7 +81,7 @@ function ArtistDetails() {
                     <tr className="artistName">
                         <th colSpan="4">
                             Further Reading:
-                            <Link to={artist.wikipedia_link}> {artist.wikipedia_link}</Link>
+                            <Link to={artist.wikipedia_link} target="_blank"> {artist.wikipedia_link}</Link>
                         </th>
                     </tr>
                 </tbody>
@@ -89,9 +89,10 @@ function ArtistDetails() {
                     <tr >
                         <th colSpan="4">
                             <form>
-                                <iframe width="420" height="315"
+                                <iframe width="320" height="215"
                                     src={`${artist.youtube_link}`}
                                     title="youtube link"
+                                    className="video"
                                 >
                                 </iframe>
                             </form>
@@ -101,19 +102,19 @@ function ArtistDetails() {
             </table>
             <div className="show-navigation">
                 <Link to={`/artists`}>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button className="btn btn-dark btn-sm" onClick={handleDelete}>Delete</button>
                 </Link>
                 <Link className="edit" to={`/artists/${artist_id}/edit`}>
-                    <button>
+                    <button className="btn btn-dark btn-sm">
                         Edit Artist
                     </button>
                 </Link>
                 <Link className="edit" to={`/artists/${artist_id}/artworks/new`}>
-                    <button>
+                    <button className="btn btn-dark btn-sm">
                         New Artwork
                     </button>
                 </Link>
-                <button onClick={handleNavArtworks}>
+                <button className="btn btn-dark btn-sm" onClick={handleNavArtworks}>
                     Artist Artworks List
                 </button>
 
