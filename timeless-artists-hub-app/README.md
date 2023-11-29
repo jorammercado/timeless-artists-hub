@@ -9,6 +9,7 @@ Contents
  - [Sitemap](#sitemap)
  - [Deployed App Access](#deployed-app-access)
  - [GitHub Repositories](#github-repositories)
+ - [Known Issues](#known-issues)
 
 
 ## Sitemap 
@@ -72,3 +73,8 @@ The gibHub repositories can be accessed here:
 Raw data to sql helper repo:
 
 [json-to-sql](https://github.com/jorammercado/timeless-artists-hub-sql-init)
+
+
+## Known Issues
+
+Since the database is relatively large, it may take several seconds to load all the artwork from the server, give it several seconds.
