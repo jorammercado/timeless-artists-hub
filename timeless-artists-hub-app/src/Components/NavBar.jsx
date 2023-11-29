@@ -9,14 +9,11 @@ export default function NavBar() {
                 <div className="container-fluid">
                     <div>
                         <Link to="/">Home </Link>
-                    </div>
-                    <div>
+
                         <Link to="/artists"> Artists </Link>
-                    </div>
-                    <div>
+
                         <Link to="/artworks">Artworks </Link>
-                    </div>
-                    <div>
+
                         <Link to="/artists/new">New Artist</Link>
                     </div>
                     <span className="navbar-text">
@@ -27,3 +24,4 @@ export default function NavBar() {
         </div>
     )
 }
+

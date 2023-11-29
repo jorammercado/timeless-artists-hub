@@ -1,17 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-// export default {
-//   content: ["./src/**/*.{html,js}"],
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [],
-// }
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./**/*.{html,js}"],
+export default {
+  content: ["./index.html",
+  "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        dancing: ['Dancing Script'],
+        tanger: ['Tangerine']
+      }
+    },
   },
   plugins: [],
 }
+
