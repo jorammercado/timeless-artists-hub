@@ -188,11 +188,11 @@ export default function ArtworkList() {
 
     return (
         <div className="artworks">
-            <div>
+            <div className="artworks-title">
                 {artist.artiste_name}'s artworks in database: {allArtworks.length}
             </div>
-            <section>
-                <Table className="table" striped bordered hover>
+            <section className="table-top">
+                <Table className="table table-striped table-hover table-responsive table-bordered table-light ">
                     <thead>
                         <tr className="table-row">
                             <th>

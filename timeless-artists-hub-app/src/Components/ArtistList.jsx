@@ -210,55 +210,55 @@ export default function ArtistList() {
 
     return (
         <div className="artists">
-            <div>
+            <div className="artist-title">
                 Artists in Database: {allArtists.length}
             </div>
-            <section>
-                <Table className="table" striped bordered hover>
-                    <thead>
-                        <tr className="table-row">
-                            <th>
-                                #
-                            </th>
-                            <th className="is_favorite">
-                                <Button className="btn btn-secondary btn-sm" onClick={handleSortArtistsFav}>
-                                    {`\u2605`}
-                                </Button>
-                            </th>
-                            <th className="name">
-                                <Button className="btn btn-secondary btn-sm" onClick={handleSortArtists}>
-                                    Artist {` \u21f3`}
-                                </Button>
-                            </th>
-                            <th className="years_alive">
-                                <Button className="btn btn-secondary btn-sm" onClick={handleSortArtistsBir}>
-                                    Years {` \u21f3`}
-                                </Button>
-                            </th>
-                            <th className="genre">
-                                <Button className="btn btn-secondary btn-sm" onClick={handleSortArtistsGe}>
-                                    Genre {` \u21f3`}
-                                </Button>
-                            </th>
-                            <th className="nationality">
-                                <Button className="btn btn-secondary btn-sm" onClick={handleSortArtistsNa}>
-                                    Nationality {` \u21f3`}
-                                </Button>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentTableData.map(artist => {
-                            { artist.index = itemIndex.indexOf(artist.id) + 1 }
-                            return (
-                                <Artist
-                                    key={artist.id}
-                                    artist={artist}
-                                />
-                            )
-                        }, itemIndex)}
-                    </tbody>
-                </Table>
+            <section className="table-top">
+                    <Table className="table table-striped table-hover table-responsive table-bordered table-light " >
+                        <thead>
+                            <tr className="table-row">
+                                <th>
+                                    #
+                                </th>
+                                <th className="is_favorite">
+                                    <Button className="btn btn-secondary btn-sm" onClick={handleSortArtistsFav}>
+                                        {`\u2605`}
+                                    </Button>
+                                </th>
+                                <th className="name">
+                                    <Button className="btn btn-secondary btn-sm" onClick={handleSortArtists}>
+                                        Artist {` \u21f3`}
+                                    </Button>
+                                </th>
+                                <th className="years_alive">
+                                    <Button className="btn btn-secondary btn-sm" onClick={handleSortArtistsBir}>
+                                        Years {` \u21f3`}
+                                    </Button>
+                                </th>
+                                <th className="genre">
+                                    <Button className="btn btn-secondary btn-sm" onClick={handleSortArtistsGe}>
+                                        Genre {` \u21f3`}
+                                    </Button>
+                                </th>
+                                <th className="nationality">
+                                    <Button className="btn btn-secondary btn-sm" onClick={handleSortArtistsNa}>
+                                        Nationality {` \u21f3`}
+                                    </Button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {currentTableData.map(artist => {
+                                { artist.index = itemIndex.indexOf(artist.id) + 1 }
+                                return (
+                                    <Artist
+                                        key={artist.id}
+                                        artist={artist}
+                                    />
+                                )
+                            }, itemIndex)}
+                        </tbody>
+                    </Table>
                 <Pagination
                     className="pagination-bar"
                     currentPage={currentPageV2}

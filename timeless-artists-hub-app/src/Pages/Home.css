@@ -1,4 +1,4 @@
-.home {}
+
 
 .title {
     font-size: 39px;
@@ -7,6 +7,7 @@
     margin-top: 25px;
     margin-left: 500px;
     margin-right: 500px;
+    text-align: center;
 }
 
 .sub-title {
@@ -14,5 +15,4 @@
     font-weight: 500;
     margin-top: 75px;
     text-align: center;
-
 }
