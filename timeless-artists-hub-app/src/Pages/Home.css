@@ -1,12 +1,11 @@
 
 
-.title {
+.home-title {
     font-size: 39px;
     font-weight: bolder;
     padding-top: 0px;
     margin-top: 25px;
-    margin-left: 500px;
-    margin-right: 500px;
+    margin:auto;
     text-align: center;
 }
 

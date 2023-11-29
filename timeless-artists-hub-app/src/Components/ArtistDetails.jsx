@@ -64,7 +64,7 @@ function ArtistDetails() {
 
     return (
         <article className="topArtist">
-            <table className="tableArtist table table-bordered">
+            <table className="tableArtist table table-bordered table-responsive ">
                 <tbody>
                     <tr className="artistName">
                         <th colSpan="4"> Name: {artist.artiste_name} </th>

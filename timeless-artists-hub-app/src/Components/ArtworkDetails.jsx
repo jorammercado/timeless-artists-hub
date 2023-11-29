@@ -50,7 +50,7 @@ function ArtworkDetails() {
 
     return (
         <article className="top-artwork">
-            <table className="table-artwork table table-bordered">
+            <table className="table-artwork table table-bordered table-responsive ">
                 <tbody>
                     <tr >
                         <th colSpan="4">

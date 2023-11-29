@@ -3,7 +3,7 @@ import "./Home.css"
 function Home() {
     return (
         <div className="home">
-            <div className="title">
+            <div className="home-title">
                 Timeless Artists Hub
             </div>
             <div className="sub-title">
