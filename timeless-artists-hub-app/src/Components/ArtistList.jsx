@@ -211,7 +211,7 @@ export default function ArtistList() {
     return (
         <div className="artists">
             <div className="artist-title">
-                Artists in Database: {allArtists.length}
+                Artists in Table: {allArtists.length}
             </div>
             <section className="table-top">
                     <Table className="table table-striped table-hover table-responsive table-bordered table-light " >

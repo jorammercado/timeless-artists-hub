@@ -176,7 +176,7 @@ export default function ArtworkListDirect() {
     return (
         <div className="artworks">
             <div className="artworks-title">
-                Artworks in database: {allArtworks.length}
+                Artworks in Table: {allArtworks.length}
             </div>
             <section className="table-top">
                 <Table className="table table-striped table-hover table-responsive table-bordered table-light ">
