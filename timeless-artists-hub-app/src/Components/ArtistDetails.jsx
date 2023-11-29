@@ -99,22 +99,21 @@ function ArtistDetails() {
                         </th>
                     </tr>
                 </tbody>
-                <div className="show-navigation">
-                    <button className="btn btn-dark btn-sm" onClick={handleDelete}>
-                        Delete
-                    </button>
-                    <button className="btn btn-dark btn-sm" onClick={() => navigate(`/artists/${artist_id}/edit`)}>
-                        Edit Artist
-                    </button>
-                    <button className="btn btn-dark btn-sm" onClick={() => navigate(`/artists/${artist_id}/artworks/new`)} >
-                        New Artwork
-                    </button>
-                    <button className="btn btn-dark btn-sm" onClick={handleNavArtworks}>
-                        Artist Artworks List
-                    </button>
-                </div>
             </table>
-
+            <div className="show-navigation">
+                <button className="btn btn-dark btn-sm" onClick={handleDelete}>
+                    Delete
+                </button>
+                <button className="btn btn-dark btn-sm" onClick={() => navigate(`/artists/${artist_id}/edit`)}>
+                    Edit Artist
+                </button>
+                <button className="btn btn-dark btn-sm" onClick={() => navigate(`/artists/${artist_id}/artworks/new`)} >
+                    New Artwork
+                </button>
+                <button className="btn btn-dark btn-sm" onClick={handleNavArtworks}>
+                    Artist Artworks List
+                </button>
+            </div>
             <br></br>
         </article>
     )

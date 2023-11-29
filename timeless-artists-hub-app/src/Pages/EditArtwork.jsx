@@ -7,9 +7,7 @@ function EditArtwork() {
             <div className="edit-artwork-title">
                 Edit Artwork 
             </div >
-            <div className="edit-artwork-form-container">
                 <ArtworkEditForm />
-            </div>
         </div>
     )
 }

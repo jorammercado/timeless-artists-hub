@@ -75,7 +75,8 @@ function ArtworkDetails() {
                         <th colSpan="4"> Date Created: {artwork.date_created} </th>
                     </tr>
                 </tbody>
-                <div className="show-navigation">
+            </table>
+            <div className="show-navigation">
                 <button className="btn btn-dark btn-sm" onClick={handleDelete}>
                     Delete
                 </button>
@@ -89,8 +90,6 @@ function ArtworkDetails() {
                     Edit Artwork
                 </button>
             </div>
-            </table>
-            
             <br></br>
         </article>
     )

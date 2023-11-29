@@ -5,10 +5,11 @@ function NewArtwork() {
 
     return (
         <div className="top-new-artwork">
-            Add Artwork
-            <div className="new-artwork-form">
-                <ArtworkNewForm />
+            <div className="new-artwork-title">
+                Add Artwork
             </div>
+            <ArtworkNewForm />
+
         </div>
     );
 }

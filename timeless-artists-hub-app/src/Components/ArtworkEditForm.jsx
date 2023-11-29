@@ -76,8 +76,8 @@ export default function ArtworkEditForm() {
     }
 
     return (
-        <div>
-            <Form noValidate onSubmit={handleSubmit}>
+        <div className="form-edit-artwork">
+            <Form className="form" noValidate onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="artwork_name">
                         <Form.Label>Artwork Name</Form.Label>
@@ -137,10 +137,10 @@ export default function ArtworkEditForm() {
                     />
                 </Form.Group>
                 <div className="form-edit-button">
-                    <button className="update" variant="primary" type="submit">
+                    <button className="btn btn-dark btn-md" variant="primary" type="submit">
                         Update Artwork
                     </button>
-                    <button variant="primary" onClick={handleBack} type="submit">
+                    <button className="btn btn-dark btn-md" variant="primary" onClick={handleBack} type="submit">
                         Back
                     </button>
                 </div>

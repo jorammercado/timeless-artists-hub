@@ -1,0 +1,25 @@
+.form-new-artwork {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 17px;
+    margin: auto;
+}
+
+.form {
+    width: 850px;
+}
+
+input {
+    border: 1px solid #B0B0B0;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+input[type="text"], input[type="checkbox"], input[type="number"] {
+    font-size: 22px;
+    background-color : rgb(240,240,240);
+}
+
+input[type="checkbox"]{
+    accent-color:black;
+}

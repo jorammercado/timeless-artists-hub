@@ -100,16 +100,16 @@ export default function ArtworkNewForm() {
     }
 
     return (
-        <div>
-            <Form noValidate onSubmit={handleSubmit}>
+        <div className="form-new-artwork">
+            <Form className="form" noValidate onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="artwork_name">
-                        <Form.Label>Artwork Name</Form.Label>
+                        <Form.Label>Name</Form.Label>
                         <Form.Control
                             required
                             name="artwork_name"
                             type="text"
-                            placeholder="artwork name"
+                            placeholder="name"
                             value={artwork.artwork_name}
                             onChange={handleInputChange}
                         />
@@ -117,11 +117,11 @@ export default function ArtworkNewForm() {
                 </Row>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="style">
-                        <Form.Label>Artwork Style</Form.Label>
+                        <Form.Label>Style</Form.Label>
                         <Form.Control
                             name="style"
                             type="text"
-                            placeholder="artwork style"
+                            placeholder="style"
                             value={artwork.style}
                             onChange={handleInputChange}
                         />
@@ -133,7 +133,7 @@ export default function ArtworkNewForm() {
                         <Form.Control
                             name="date_created"
                             type="text"
-                            placeholder="date artwork created"
+                            placeholder="date"
                             value={artwork.date_created}
                             onChange={handleInputChange}
                         />
@@ -145,7 +145,7 @@ export default function ArtworkNewForm() {
                         <Form.Control
                             name="img_link"
                             type="text"
-                            placeholder="image link"
+                            placeholder="link"
                             value={artwork.img_link}
                             onChange={handleInputChange}
                         />
@@ -161,13 +161,13 @@ export default function ArtworkNewForm() {
                     />
                 </Form.Group>
                 <div className="form-container-button">
-                    <button className="new" variant="primary" type="submit">
+                    <button className="btn btn-dark btn-md" variant="primary" type="submit">
                         Create
                     </button>
-                    <button className="clear" variant="outline-primary" onClick={handleReset} type="button">
+                    <button className="btn btn-dark btn-md" variant="outline-primary" onClick={handleReset} type="button">
                         Clear
                     </button>
-                    <button className="cancel" variant="secondary" onClick={handleCancel} type="button">
+                    <button className="btn btn-dark btn-md" variant="secondary" onClick={handleCancel} type="button">
                         Cancel
                     </button>
                 </div>
