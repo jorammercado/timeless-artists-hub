@@ -239,10 +239,10 @@ export default function ArtworkList() {
                     pageSize={PageSize}
                     onPageChange={page => setCurrentPageV2(page)}
                 />
-            </section>
-            <button onClick={() => navigate(`/artists/${artist_id}`)}>
+                <button className="btn btn-dark btn-sm" onClick={() => navigate(`/artists/${artist_id}`)}>
                 <span>Artist Details</span>
             </button>
+            </section>
         </div>
     )
 }

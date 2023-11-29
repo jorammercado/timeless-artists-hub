@@ -78,10 +78,10 @@ export default function ArtistEditForm() {
 
     return (
         <div className="form-edit">
-            <Form noValidate onSubmit={handleSubmit}>
+            <Form className="form" noValidate onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="artiste_name">
-                        <Form.Label>Artist Name</Form.Label>
+                        <Form.Label>Name</Form.Label>
                         <Form.Control
                             required
                             type="text"
@@ -153,7 +153,8 @@ export default function ArtistEditForm() {
                             onChange={handleInputChange}
                         />
                     </Form.Group>
-
+                </Row>
+                <Row className="mb-3">
                     <Form.Group as={Col} controlId="wikipedia_link">
                         <Form.Label>Wikipedia Link</Form.Label>
                         <Form.Control
@@ -189,10 +190,10 @@ export default function ArtistEditForm() {
                     />
                 </Form.Group>
                 <div className="form-edit-button">
-                    <button className="update atlBtnColor" variant="primary" type="submit">
+                    <button className="btn btn-dark btn-md" variant="primary" type="submit">
                         Update Artist
                     </button>
-                    <button className="back" variant="secondary" onClick={handleBack} type="submit">
+                    <button className="btn btn-dark btn-md" variant="secondary" onClick={handleBack} type="submit">
                         Back
                     </button>
                 </div>
