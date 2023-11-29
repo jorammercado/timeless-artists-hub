@@ -240,9 +240,6 @@ export default function ArtworkList() {
                     onPageChange={page => setCurrentPageV2(page)}
                 />
             </section>
-            <button onClick={() => navigate(-1)}>
-                <span>Back</span>
-            </button>
             <button onClick={() => navigate(`/artists/${artist_id}`)}>
                 <span>Artist Details</span>
             </button>

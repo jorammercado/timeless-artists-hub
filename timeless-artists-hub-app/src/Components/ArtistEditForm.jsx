@@ -47,7 +47,7 @@ export default function ArtistEditForm() {
                 else if (data.err) {
                     throw new Error(data.err)
                 }
-                else{
+                else {
                     alert(`Artist ${data.artiste_name} succesfully updated`)
                     navigate(`/artists/${id}`)
                 }
@@ -188,24 +188,14 @@ export default function ArtistEditForm() {
                         onChange={handleInputChange}
                     />
                 </Form.Group>
-
                 <div className="form-edit-button">
-                    <div className="button-update">
-                        <button className="update atlBtnColor" variant="primary" type="submit">
-                            <span>
-                                Update Artist
-                            </span>
-                        </button>
-                    </div>
-                    <div className="button-back">
-                        <button className="back" variant="secondary" onClick={handleBack} type="submit">
-                            <span>
-                                Back
-                            </span>
-                        </button>
-                    </div>
+                    <button className="update atlBtnColor" variant="primary" type="submit">
+                        Update Artist
+                    </button>
+                    <button className="back" variant="secondary" onClick={handleBack} type="submit">
+                        Back
+                    </button>
                 </div>
-
             </Form>
         </div>
     )

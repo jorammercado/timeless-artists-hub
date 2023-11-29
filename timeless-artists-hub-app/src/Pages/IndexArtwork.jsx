@@ -4,7 +4,7 @@ import "./IndexArtwork.css"
 function IndexArtwork() {
     return (
         <div className="artwork-Index">
-            <div className="artwork-title-index">Artist's Artworks</div>
+            <div className="artwork-title-index"></div>
             <ArtworkList />
         </div>
     )

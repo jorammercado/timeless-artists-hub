@@ -105,7 +105,7 @@ function ArtistDetails() {
                 </Link>
                 <Link className="edit" to={`/artists/${artist_id}/edit`}>
                     <button>
-                        Edit
+                        Edit Artist
                     </button>
                 </Link>
                 <Link className="edit" to={`/artists/${artist_id}/artworks/new`}>
