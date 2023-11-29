@@ -49,8 +49,8 @@ function ArtworkDetails() {
     }
 
     return (
-        <article className="topArtist">
-            <table className="tableArtist">
+        <article className="top-artwork">
+            <table className="table-artwork table table-bordered">
                 <tbody>
                     <tr >
                         <th colSpan="4">
@@ -58,6 +58,7 @@ function ArtworkDetails() {
                                 src={`${artwork.img_link}`}
                                 alt={`Image of ${artwork.artwork_name}`}
                                 style={{ height: "400px" }}
+                                className="image"
                             />
                         </th>
                     </tr>
@@ -76,16 +77,16 @@ function ArtworkDetails() {
                 </tbody>
             </table>
             <div className="show-navigation">
-                <button onClick={handleDelete}>
+                <button className="btn btn-dark btn-sm" onClick={handleDelete}>
                     Delete
                 </button>
-                <button onClick={() => navigate(`/artists/${artist_id}`)}>
+                <button className="btn btn-dark btn-sm" onClick={() => navigate(`/artists/${artist_id}`)}>
                     Artist Details
                 </button>
-                <button onClick={() => navigate(`/artists/${artist_id}/artworks`)}>
+                <button className="btn btn-dark btn-sm" onClick={() => navigate(`/artists/${artist_id}/artworks`)}>
                     Artist Artworks
                 </button>
-                <button onClick={() => navigate(`/artists/${artist_id}/artworks/${id}/edit`)} >
+                <button className="btn btn-dark btn-sm" onClick={() => navigate(`/artists/${artist_id}/artworks/${id}/edit`)} >
                     Edit Artwork
                 </button>
             </div>
