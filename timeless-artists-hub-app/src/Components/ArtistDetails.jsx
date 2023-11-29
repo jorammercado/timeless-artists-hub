@@ -33,8 +33,9 @@ function ArtistDetails() {
     const handleDelete = () => {
         const httpOptions = { "method": "DELETE" }
         fetch(`${API}/artistes/${artist_id}`, httpOptions)
+            .then(response => response.json())
             .then((res) => {
-                alert("Artist was deleted!")
+                alert(`Artist ${res.deletedArtiste.artiste_name} was deleted!`)
                 navigate('/artists')
             })
             .catch((err) => console.error(err))
@@ -107,9 +108,6 @@ function ArtistDetails() {
                         Edit
                     </button>
                 </Link>
-                <button onClick={() => navigate(-1)}>
-                    Back
-                </button>
                 <Link className="edit" to={`/artists/${artist_id}/artworks/new`}>
                     <button>
                         New Artwork
@@ -118,7 +116,7 @@ function ArtistDetails() {
                 <button onClick={handleNavArtworks}>
                     Artist Artworks List
                 </button>
-                
+
 
 
             </div>

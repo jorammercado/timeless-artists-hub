@@ -243,6 +243,9 @@ export default function ArtworkList() {
             <button onClick={() => navigate(-1)}>
                 <span>Back</span>
             </button>
+            <button onClick={() => navigate(`/artists/${artist_id}`)}>
+                <span>Artist Details</span>
+            </button>
         </div>
     )
 }

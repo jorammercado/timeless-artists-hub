@@ -17,7 +17,8 @@ export default function ArtworkEditForm() {
         style: "",
         date_created: "",
         img_link: "",
-        is_favorite: false
+        is_favorite: false,
+        artiste_id: 0
     })
     const navigate = useNavigate()
 
@@ -45,9 +46,10 @@ export default function ArtworkEditForm() {
                 else if (data.err) {
                     throw new Error(data.err)
                 }
-                else
+                else {
                     alert(`Artwork ${data.artwork_name} successfully updated!`)
-                navigate(`/artists/${artist_id}/artworks/${id}`)
+                    navigate(`/artists/${artist_id}/artworks/${id}`)
+                }
             })
             .catch((error) => {
                 alert(error)

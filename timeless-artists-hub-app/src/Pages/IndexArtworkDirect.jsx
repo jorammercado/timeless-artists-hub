@@ -4,7 +4,7 @@ import "./IndexArtworkDirect.css"
 function IndexArtworkDirect() {
     return (
         <div className="artwork-Index">
-            <div className="artwork-title-index">Artwork List</div>
+            <div className="artwork-title-index"></div>
             <ArtworkListDirect />
         </div>
     )

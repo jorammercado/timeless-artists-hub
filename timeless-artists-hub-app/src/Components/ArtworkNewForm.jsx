@@ -1,6 +1,6 @@
 
 import React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
@@ -10,8 +10,12 @@ import "./ArtworkNewForm.css"
 const API = import.meta.env.VITE_API_URL
 
 export default function ArtworkNewForm() {
-    const { artist_id } = useParams()
+    const { artist_id, id } = useParams()
+    const [artiste_name, setArtiste] = useState("")
+    const [artiste_id, setArtisteId] = useState(0)
     const [artwork, setArtwork] = useState({
+        artiste_name: "",
+        ariste_id: 0,
         artwork_name: "",
         style: "",
         date_created: "",
@@ -19,6 +23,27 @@ export default function ArtworkNewForm() {
         is_favorite: false
     })
     const navigate = useNavigate()
+
+    useEffect(() => {
+        fetch(`${API}/artistes/${artist_id}`)
+            .then((response) => response.json())
+            .then((responseJSON) => {
+                if (responseJSON.error) {
+                    throw new Error(responseJSON.error)
+                }
+                else if (responseJSON.err) {
+                    throw new Error(responseJSON.err)
+                }
+                else {
+                    setArtiste(responseJSON.artiste_name)
+                    setArtisteId(responseJSON.artiste_id)
+                    setArtwork({ ...artwork, artiste_name, artiste_id })
+                }
+            })
+            .catch((error) =>{
+                 console.error(error)
+            })
+    }, [artist_id, id])
 
     const addArtwork = () => {
         fetch(`${API}/artistes/${artist_id}/artworks`, {
@@ -28,10 +53,23 @@ export default function ArtworkNewForm() {
                 "Content-Type": "application/json",
             },
         })
-            .then(() => {
-                navigate(`${API}/artistes/${artist_id}/artworks`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    throw new Error(data.error)
+                }
+                else if (data.err) {
+                    throw new Error(data.err)
+                }
+                else {
+                    alert(`Artwork ${data.artwork_name} succesfully created`)
+                    navigate(`/artists/${artist_id}/artworks/${data.id}`)
+                }
             })
-            .catch((error) => console.error("catch", error))
+            .catch((error) => {
+                alert(error)
+                console.error(error)
+            })
     }
 
     const handleInputChange = (e) => {
@@ -48,11 +86,11 @@ export default function ArtworkNewForm() {
     }
 
     const handleCancel = () => {
-        navigate(`/artistes/${artist_id}/artworks`)
+        navigate(`/artists/${artist_id}`)
     }
 
     const handleReset = () => {
-        setArtist({
+        setArtwork({
             artwork_name: "",
             style: "",
             date_created: "",
@@ -83,7 +121,7 @@ export default function ArtworkNewForm() {
                         <Form.Control
                             name="style"
                             type="text"
-                            placeholder="Enter Actor Image URL"
+                            placeholder="artwork style"
                             value={artwork.style}
                             onChange={handleInputChange}
                         />
@@ -95,7 +133,7 @@ export default function ArtworkNewForm() {
                         <Form.Control
                             name="date_created"
                             type="text"
-                            placeholder="Date Artwork Created"
+                            placeholder="date artwork created"
                             value={artwork.date_created}
                             onChange={handleInputChange}
                         />
@@ -123,15 +161,15 @@ export default function ArtworkNewForm() {
                     />
                 </Form.Group>
                 <div className="form-container-button">
-                    <Button className="new" variant="primary" type="submit">
-                        <span>New Artwork</span>
-                    </Button>
-                    <Button className="clear" variant="outline-primary" onClick={handleReset} type="button">
-                        <span>Clear</span>
-                    </Button>
-                    <Button className="cancel" variant="secondary" onClick={handleCancel} type="button">
-                        <span>Cancel</span>
-                    </Button>
+                    <button className="new" variant="primary" type="submit">
+                        Create
+                    </button>
+                    <button className="clear" variant="outline-primary" onClick={handleReset} type="button">
+                        Clear
+                    </button>
+                    <button className="cancel" variant="secondary" onClick={handleCancel} type="button">
+                        Cancel
+                    </button>
                 </div>
             </Form>
         </div>

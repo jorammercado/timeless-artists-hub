@@ -30,11 +30,22 @@ function ArtworkDetails() {
         fetch(`${API}/artistes/${artist_id}/artworks/${id}`, httpOptions)
             .then(res => res.json())
             .then(data => {
-                alert(`Artwork ${data.artwork_name}` +
-                    ` by ${data.artiste_name} was deleted!`)
-                navigate(`/artists/${artist_id}/artworks`)
+                if (data.error) {
+                    throw new Error(data.error)
+                }
+                else if (data.err) {
+                    throw new Error(data.err)
+                }
+                else {
+                    alert(`Artwork ${data.artwork_name}` +
+                        ` by ${data.artiste_name} was deleted!`)
+                    navigate(`/artists/${artist_id}`)
+                }
             })
-            .catch((err) => console.error(err))
+            .catch((err) => {
+                alert(err)
+                console.error(err)
+            })
     }
 
     return (
@@ -45,7 +56,7 @@ function ArtworkDetails() {
                         <th colSpan="4">
                             <img
                                 src={`${artwork.img_link}`}
-                                alt={`Poster of ${artwork.artwork_name}`}
+                                alt={`Image of ${artwork.artwork_name}`}
                                 style={{ height: "400px" }}
                             />
                         </th>
