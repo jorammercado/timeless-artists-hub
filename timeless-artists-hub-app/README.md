@@ -68,3 +68,7 @@ The gibHub repositories can be accessed here:
 [FrontEnd](https://github.com/jorammercado/timeless-artists-hub-app)
 
 [BackEnd](https://github.com/jorammercado/timeless-artists-hub-server)
+
+Raw data to sql helper repo:
+
+[json-to-sql](https://github.com/jorammercado/timeless-artists-hub-sql-init)
