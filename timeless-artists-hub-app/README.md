@@ -2,14 +2,13 @@
 # Timeless Artists Hub
 Discover learn and appreciate art through the ages and journey through the epochs of artistry.
 
-This site is a repository of famous artists and their artwork for educational purposes. This site contains a brief synopsis of who the artists were and a relatively large collection of their paintings. Can be useful for an art school, museum, or someone looking to get acquainted in identifying the artwork of famous artists (timeless artists). 
+This site is a repository of famous artists and their artwork for educational purposes. This site contains a brief synopsis of who the artists were and a relatively large collection of their paintings. Can be useful for an art school, museum, or someone looking to get acquainted in identifying the artwork of famous artists. 
 
 Contents
 ========
  - [Sitemap](#sitemap)
  - [Deployed App Access](#deployed-app-access)
  - [GitHub Repositories](#github-repositories)
- - [Known Issues](#known-issues)
 
 
 ## Sitemap 
@@ -51,30 +50,24 @@ Home
 └── New Artist  
 ```
 
-## Deployed App Access
+## Deployed App 
 
-The Deployed app (netlify) can be accessed here: 
+Deployed application can be accessed here: 
+[Deployed App](https://artistshub.netlify.app)
 
-[Deployed App](https://main--gregarious-cocada-8a62fe.netlify.app/)
+Server access:
+[server](https://timeless-artists-hub-server.onrender.com/)
 
-The server can be accessed at:
-
-[Server](https://timeless-artists-hub-server.onrender.com/)
-> You may need to access the server to start/restart it.
 
 ## GitHub Repositories
 
 The gibHub repositories can be accessed here:
 
-[FrontEnd](https://github.com/jorammercado/timeless-artists-hub-app)
+[Frontend](https://github.com/jorammercado/timeless-artists-hub-app)
 
-[BackEnd](https://github.com/jorammercado/timeless-artists-hub-server)
+[Backend](https://github.com/jorammercado/timeless-artists-hub-server)
 
 Raw data to sql helper repo:
 
 [json-to-sql](https://github.com/jorammercado/timeless-artists-hub-sql-init)
 
-
-## Known Issues
-
-Since the database is relatively large, it may take several seconds to load all the artwork from the server, give it several seconds.
